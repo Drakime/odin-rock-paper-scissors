@@ -16,9 +16,9 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  userSelection = userSelection.toLowerCase();
+  playerSelection = playerSelection.toLowerCase();
   
-  switch (userSelection) {
+  switch (playerSelection) {
     case "rock":
       if (computerSelection === "paper") {
         return "You Lose! Paper beats Rock!";
