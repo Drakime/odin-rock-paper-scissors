@@ -1,6 +1,5 @@
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3) + 1;
-  console.log(randomNumber);
 
   switch (randomNumber) {
     case 1:
@@ -17,7 +16,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
-  
+
   switch (playerSelection) {
     case "rock":
       if (computerSelection === "paper") {
@@ -47,3 +46,49 @@ function playRound(playerSelection, computerSelection) {
       return "Invalid option.";
   }
 }
+
+function evaluateWinner(result) {
+  if (result.includes("Win")) {
+    return 1;
+  } else if (result.includes("Lose")) {
+    return 2;
+  } else if (result.includes("draw")) {
+    return 3;
+  } else {
+    return;
+  }
+}
+
+function game() {
+  let computerScore = 0;
+  let playerScore = 0;
+
+  for (i = 1; i <= 5; i++) {
+    let playerSelection = prompt(`Round ${i} of 5: Choose rock, paper or scissors.`);
+    let result = playRound(playerSelection, getComputerChoice())
+    let evaluation = evaluateWinner(result);
+
+    switch (evaluation) {
+      case 1:
+        playerScore += 1;
+        break;
+      case 2:
+        computerScore += 1;
+        break;
+      default:
+        break;
+    }
+
+    console.log(result);
+  }
+
+  if (playerScore > computerScore) {
+    console.log("You are the winner!");
+  } else if (playerScore < computerScore) {
+    console.log("The computer wins!");
+  } else if (playerScore === computerScore) {
+    console.log("The match is a draw!");
+  }
+}
+
+game();
