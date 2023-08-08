@@ -59,36 +59,53 @@ function evaluateWinner(result) {
   }
 }
 
-function game() {
-  let computerScore = 0;
-  let playerScore = 0;
+let computerScore = 0;
+let playerScore = 0;
 
-  for (i = 1; i <= 5; i++) {
-    let playerSelection = prompt(`Round ${i} of 5: Choose rock, paper or scissors.`);
-    let result = playRound(playerSelection, getComputerChoice())
-    let evaluation = evaluateWinner(result);
+function game(playerSelection) {
+  let result = playRound(playerSelection, getComputerChoice())
+  let evaluation = evaluateWinner(result);
 
-    switch (evaluation) {
-      case 1:
-        playerScore += 1;
-        break;
-      case 2:
-        computerScore += 1;
-        break;
-      default:
-        break;
+  switch (evaluation) {
+    case 1:
+      playerScore += 1;
+      break;
+    case 2:
+      computerScore += 1;
+      break;
+    default:
+      break;
+  }
+
+  if (playerScore === 5 || computerScore === 5) {
+    if (playerScore > computerScore) {
+      return "You are the winner!";
+    } else if (playerScore < computerScore) {
+      return "The computer wins!";
+    } else if (playerScore === computerScore) {
+      return "The match is a draw!";
     }
-
-    console.log(result);
   }
 
-  if (playerScore > computerScore) {
-    console.log("You are the winner!");
-  } else if (playerScore < computerScore) {
-    console.log("The computer wins!");
-  } else if (playerScore === computerScore) {
-    console.log("The match is a draw!");
-  }
+  return result;
 }
 
-game();
+const buttons = document.querySelectorAll('.option-button');
+const resultDisplay = document.querySelector('#result-display');
+let playerScoreDisplay = document.querySelector('#player-score');
+let computerScoreDisplay = document.querySelector('#computer-score');
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+
+  // and for each one we add a 'click' listener
+  button.addEventListener('click', () => {
+    let result = game(button.textContent);
+    const outcome = document.createElement('p');
+    outcome.textContent = result;
+    resultDisplay.appendChild(outcome);
+
+    playerScoreDisplay.textContent = `${playerScore}`;
+    computerScoreDisplay.textContent = `${computerScore}`;
+  });
+});
