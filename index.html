@@ -11,19 +11,26 @@
 
 <body>
 
-  <header>
-    Rock Paper Scissors
-  </header>
-
-  <div>
-    <button class="option-button">Rock</button>
-    <button class="option-button">Paper</button>
-    <button class="option-button">Scissors</button>
+  <div class="header">
+    <h1 class="header-title">Rock Paper Scissors</h1>
   </div>
 
-  <div id="result-display"></div>
-  <div id="player-score">0</div>
-  <div id="computer-score">0</div>
+  <div class="container">
+    <div class="choices">
+      <img src="./img/rock.png" alt="Rock option" class="option-button">
+      <img src="./img/paper.png" alt="Paper option" class="option-button">
+      <img src="./img/scissors.png" alt="Scissors option" class="option-button">
+    </div>
+    <div class="results">
+      <p id="result-display"></p>
+      <div id="player-score">0</div>
+      <div id="computer-score">0</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Copyright © Drakime 2023</p>
+  </div>
 </body>
 
 <script src="script.js"></script>
