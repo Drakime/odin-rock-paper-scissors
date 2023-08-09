@@ -23,12 +23,20 @@ body {
 /* || HEADER */
 
 .header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   padding: 8px;
 
   font-size: 24px;
 
   position: relative;
   box-shadow: 0 5px 5px -5px gray;
+}
+
+.header-logo {
+  height: 100px;
+  width: 100px;
 }
 
 .header-title {
