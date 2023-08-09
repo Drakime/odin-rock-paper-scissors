@@ -1,6 +1,8 @@
 /* || IMPORTS */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 
 /* || GENERAL STYLES */
 
@@ -41,6 +43,8 @@ body {
 
 .header-title {
   margin: 0;
+  font-weight: 100;
+  font-family: Pacifico, serif;
 }
 
 /* || MAIN */
