@@ -34,6 +34,10 @@ p {
   background-color: whitesmoke;
 }
 
+img {
+  -webkit-user-drag: none;
+}
+
 /* || HEADER */
 
 .header {
@@ -51,7 +55,7 @@ p {
 .header-logo {
   height: 70px;
   width: 70px;
-  border-radius: 100px;
+  border-radius: 50%;
   border: solid 2px;
 }
 
@@ -77,12 +81,6 @@ p {
 .choices {
   display: flex;
   gap: 64px;
-}
-
-.choices > img {
-  padding: 16px;
-  border: solid 1px;
-  border-radius: 16px;
 }
 
 .option-button {
@@ -120,4 +118,5 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4px;
 }
