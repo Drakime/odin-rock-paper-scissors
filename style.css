@@ -13,6 +13,10 @@
 body {
   margin: 0;
   padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 p {
@@ -22,9 +26,12 @@ p {
 
 /* || SITEWIDE */
 
-.header,
-.footer {
+.header {
   background-color: steelblue;
+}
+
+.footer {
+  background-color: whitesmoke;
 }
 
 /* || HEADER */
@@ -61,6 +68,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1;
 
   padding: 64px;
   background-color: whitesmoke;
@@ -68,8 +76,13 @@ p {
 
 .choices {
   display: flex;
-  gap: 128px;
+  gap: 64px;
+}
 
+.choices > img {
+  padding: 16px;
+  border: solid 1px;
+  border-radius: 16px;
 }
 
 .option-button {
