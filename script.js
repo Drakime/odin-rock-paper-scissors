@@ -90,20 +90,18 @@ function game(playerSelection) {
   return result;
 }
 
-const buttons = document.querySelectorAll('.option-button');
-const resultDisplay = document.querySelector('#result-display');
-let playerScoreDisplay = document.querySelector('#player-score');
-let computerScoreDisplay = document.querySelector('#computer-score');
+const choices = document.querySelectorAll('.option-button');
+const resultDisplay = document.querySelector('.result-display');
+let playerScoreDisplay = document.querySelector('.player-score');
+let computerScoreDisplay = document.querySelector('.computer-score');
 
 // we use the .forEach method to iterate through each button
-buttons.forEach((button) => {
+choices.forEach((choice) => {
 
   // and for each one we add a 'click' listener
-  button.addEventListener('click', () => {
-    let result = game(button.textContent);
-    const outcome = document.createElement('p');
-    outcome.textContent = result;
-    resultDisplay.appendChild(outcome);
+  choice.addEventListener('click', () => {
+    let result = game(choice.dataset.value);
+    resultDisplay.textContent = result;
 
     playerScoreDisplay.textContent = `${playerScore}`;
     computerScoreDisplay.textContent = `${computerScore}`;
