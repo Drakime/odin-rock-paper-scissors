@@ -15,6 +15,11 @@ body {
   padding: 0;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 /* || SITEWIDE */
 
 .header,
@@ -70,6 +75,30 @@ body {
 .option-button {
   height: 200px;
   width: 200px;
+}
+
+.result-display {
+  margin: 32px;
+}
+
+.results {
+  display: flex;
+  gap: 100px;
+}
+
+.player-details,
+.computer-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 36px;
+}
+
+.player-score,
+.computer-score {
+  font-size: 100px;
 }
 
 /* || FOOTER */
