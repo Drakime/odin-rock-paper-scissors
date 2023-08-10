@@ -27,7 +27,8 @@ body {
 .header {
   display: flex;
   align-items: center;
-  gap: 16px;
+  padding: 4px 4px;
+  gap: 4px;
 
   font-size: 24px;
 
@@ -36,8 +37,10 @@ body {
 }
 
 .header-logo {
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
+  border-radius: 100px;
+  border: solid 2px;
 }
 
 .header-title {
