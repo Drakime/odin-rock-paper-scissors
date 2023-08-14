@@ -1,17 +1,37 @@
-function getComputerChoice() {
-  let randomNumber = Math.floor(Math.random() * 3) + 1;
+// Initialise variables
+let computerScore;
+let playerScore;
+const choiceListener = new AbortController(); // used to remove button event listener
 
-  switch (randomNumber) {
-    case 1:
-      return "rock";
-      break;
-    case 2:
-      return "paper";
-      break;
-    case 3:
-      return "scissors";
-      break;
-  }
+// Create references to elements
+const choices = document.querySelectorAll('.option-button');
+const resultDisplay = document.querySelector('.result-display');
+let playerScoreDisplay = document.querySelector('.player-score');
+let computerScoreDisplay = document.querySelector('.computer-score');
+
+function initialiseGame() {
+  computerScore = 0;
+  playerScore = 0;
+
+  addButtonEventListener();
+}
+
+function addButtonEventListener() {
+  // we use the .forEach method to iterate through each button
+  choices.forEach((choice) => {
+
+    // and for each one we add a 'click' listener
+    choice.addEventListener('click', () => {
+      updateScores(choice.dataset.value);
+    },
+      { signal: choiceListener.signal }
+    );
+  });
+}
+
+function getComputerChoice() {
+  const choices = ["rock", "paper", "scissors"];
+  return choices[Math.floor(Math.random() * 3)];
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -59,9 +79,6 @@ function evaluateWinner(result) {
   }
 }
 
-let computerScore = 0;
-let playerScore = 0;
-
 function game(playerSelection) {
   let result = playRound(playerSelection, getComputerChoice())
   let evaluation = evaluateWinner(result);
@@ -78,6 +95,8 @@ function game(playerSelection) {
   }
 
   if (playerScore === 5 || computerScore === 5) {
+    choiceListener.abort();
+
     if (playerScore > computerScore) {
       return "You are the winner!";
     } else if (playerScore < computerScore) {
@@ -90,20 +109,15 @@ function game(playerSelection) {
   return result;
 }
 
-const choices = document.querySelectorAll('.option-button');
-const resultDisplay = document.querySelector('.result-display');
-let playerScoreDisplay = document.querySelector('.player-score');
-let computerScoreDisplay = document.querySelector('.computer-score');
+function updateScores(value) {
+  let result = game(value);
+  resultDisplay.textContent = result;
 
-// we use the .forEach method to iterate through each button
-choices.forEach((choice) => {
+  playerScoreDisplay.textContent = `${playerScore}`;
+  computerScoreDisplay.textContent = `${computerScore}`;
+}
 
-  // and for each one we add a 'click' listener
-  choice.addEventListener('click', () => {
-    let result = game(choice.dataset.value);
-    resultDisplay.textContent = result;
-
-    playerScoreDisplay.textContent = `${playerScore}`;
-    computerScoreDisplay.textContent = `${computerScore}`;
-  });
-});
+// Initialises the game to default when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+  initialiseGame();
+})
