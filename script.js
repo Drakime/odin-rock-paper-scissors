@@ -31,12 +31,10 @@ function addButtonEventListener() {
 
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
-  return choices[Math.floor(Math.random() * 3)];
+  return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
-  playerSelection = playerSelection.toLowerCase();
-
   switch (playerSelection) {
     case "rock":
       if (computerSelection === "paper") {
@@ -118,6 +116,4 @@ function updateScores(value) {
 }
 
 // Initialises the game to default when the DOM is loaded
-document.addEventListener('DOMContentLoaded', function () {
-  initialiseGame();
-})
+document.addEventListener('DOMContentLoaded', initialiseGame);
