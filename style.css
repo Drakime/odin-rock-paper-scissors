@@ -112,6 +112,10 @@ img {
   font-size: 100px;
 }
 
+#reset-button {
+  display: none;
+}
+
 /* || FOOTER */
 
 .footer {

@@ -1,22 +1,29 @@
 // Initialise variables
 let computerScore;
 let playerScore;
-const choiceListener = new AbortController(); // used to remove button event listener
+let choiceListener = new AbortController(); // used to remove button event listener
 
 // Create references to elements
-const choices = document.querySelectorAll('.option-button');
 const resultDisplay = document.querySelector('.result-display');
 let playerScoreDisplay = document.querySelector('.player-score');
 let computerScoreDisplay = document.querySelector('.computer-score');
+const resetButton = document.getElementById("reset-button");
 
 function initialiseGame() {
   computerScore = 0;
   playerScore = 0;
 
-  addButtonEventListener();
+  resultDisplay.textContent = "";
+  playerScoreDisplay.textContent = `${playerScore}`;
+  computerScoreDisplay.textContent = `${computerScore}`;
+
+  addChoiceButtonEventListener();
+  addResetButtonEventListener();
 }
 
-function addButtonEventListener() {
+function addChoiceButtonEventListener() {
+  const choices = document.querySelectorAll('.option-button');
+
   // we use the .forEach method to iterate through each button
   choices.forEach((choice) => {
 
@@ -27,6 +34,10 @@ function addButtonEventListener() {
       { signal: choiceListener.signal }
     );
   });
+}
+
+function addResetButtonEventListener() {
+  resetButton.addEventListener('click', resetGame);
 }
 
 function getComputerChoice() {
@@ -94,6 +105,7 @@ function game(playerSelection) {
 
   if (playerScore === 5 || computerScore === 5) {
     choiceListener.abort();
+    resetButton.style.display = "block";
 
     if (playerScore > computerScore) {
       return "You are the winner!";
@@ -113,6 +125,15 @@ function updateScores(value) {
 
   playerScoreDisplay.textContent = `${playerScore}`;
   computerScoreDisplay.textContent = `${computerScore}`;
+}
+
+function resetGame() {
+  // New instance of AbortController() is required as previous instance is not in
+  // state for reuse.
+  choiceListener = new AbortController();
+
+  initialiseGame();
+  resetButton.style.display = "none";
 }
 
 // Initialises the game to default when the DOM is loaded
