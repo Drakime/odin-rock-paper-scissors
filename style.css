@@ -81,11 +81,24 @@ img {
 .choices {
   display: flex;
   gap: 64px;
+  cursor: pointer;
 }
 
 .option-button {
   height: 200px;
   width: 200px;
+
+  opacity: .7;
+  -webkit-transition: opacity .1s ease-in-out;
+  transition: opacity .1 ease-in-out;
+}
+
+.option-button:hover {
+  opacity: 1;
+}
+
+.option-button:active {
+  transform: translateY(4px);
 }
 
 .result-display {
@@ -126,11 +139,12 @@ img {
   padding: 6px 12px;
   font-size: 16px;
   border-radius: .25rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
   :hover {
-      color: #fff;
-      background-color: #0b5ed7;
-      border-color: #0a58ca;
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
   }
 
 }
